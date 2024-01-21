@@ -1,5 +1,5 @@
 UTRA Hacks 2024 Project
-Let us Meet🥬:   Crops field monitoring & sampling robot!
+Let us Farm🥬:   Crops field monitoring & sampling robot!
 
 Features⭐:  
 -select point on map (right) and robot will move there automatically  
