@@ -7,12 +7,13 @@ app = Flask(__name__)
 
 back_track = []
 #constants
+#STARTING POINT BOTTON RIGHT CORNER OF FIELD
 M_PER_S = 0.1
 S_PER_CMD = 0.5
-IMG_X_SIZE = 100
-IMG_Y_SIZE= 100
-FIELD_X_SIZE=5
-FIELD_Y_SIZE=5
+IMG_X_SIZE = 600    
+IMG_Y_SIZE= 400
+FIELD_X_SIZE= 1.8288
+FIELD_Y_SIZE=1.2192
 ESP_IP = "http://192.168.137.3"
 
 
@@ -39,12 +40,20 @@ def move_to_position():
     y_time = FIELD_Y_SIZE*(y_pixel/IMG_Y_SIZE)/M_PER_S
     print (x_time,y_time)
     requests.post(ESP_IP,data = f'coord:{x_time},{y_time}')
+
     x_steps = floor(x_time/S_PER_CMD)
     y_steps = floor(y_time/S_PER_CMD)
     for i in range(x_steps):
+        requests.post(ESP_IP,data= "forward")
+        sleep(0.5)
         back_track.append({"back":S_PER_CMD})
+    request.post(ESP_IP,data="left_t")
+    sleep(0.5)
+    back_track.append({"right_t":S_PER_CMD})    
     for i in range(y_steps):
-        back_track.append({"right":S_PER_CMD})
+        request.post(ESP_IP,data= "forward")
+        sleep(0.5)
+        back_track.append({"back":S_PER_CMD})
 
     return redirect("localhost:5000/")
 
@@ -89,7 +98,13 @@ def arm_left():
 def arm_right():
     requests.post(ESP_IP,data= "arm_right")
 
+@app.route('/grab')
+def grab():
+    requests.post(ESP_IP,data= "grab")
 
+@app.route('/release')
+def release():
+    requests.post(ESP_IP,data= "release")
 
 
 if __name__ =="__main__":

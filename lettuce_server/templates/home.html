@@ -7,6 +7,23 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
     <title>Let us Farm</title>
+    <style>
+        #car_movement {
+            display: inline;
+        }
+
+        #arm_movement {
+            display: inline;
+        }
+
+        #arm_grab {
+            display: inline;
+        }
+
+        h2 {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,36 +31,48 @@
     <iframe src="http://192.168.137.2:8081" frameborder="0" width="640" height="480"></iframe>
 
     <a href="/new_coord">
-        <img src="../static/dog.jpg" id="map" alt="dog" width="400" height="400" ismap>
+
+        <img src="../static/field.jpg" id="map" alt="dog" width="600" height="400" ismap>
     </a>
+    <div id="car_movement">
+        <h2>Car Movement Control:</h2>
+        <button hx-get="/forward">
+            Forward
+        </button>
+        <button hx-get="/back">
+            Back
+        </button>
+        <button hx-get="/left_t">
+            Left
+        </button>
+        <button hx-get="/right_t">
+            Right
+        </button>
+    </div>
+    <div id="arm_movement">
+        <h2>Arm Control:</h2>
+        <button hx-get="/arm_up">
+            Up
+        </button>
+        <button hx-get="/arm_down">
+            Down
+        </button>
+        <button hx-get="/arm_left">
+            Left
+        </button>
+        <button hx-get="/arm_right">
+            Right
+        </button>
 
-    <h2>Car Movement Control:</h2>
-    <button hx-get="/forward">
-        Forward
-    </button>
-    <button hx-get="/back">
-        Back
-    </button>
-    <button hx-get="/left_t">
-        Left
-    </button>
-    <button hx-get="/right_t">
-        Right
-    </button>
-
-    <h2>Arm Control:</h2>
-    <button hx-get="/arm_up">
-        Up
-    </button>
-    <button hx-get="/arm_down">
-        Down
-    </button>
-    <button hx-get="/arm_left">
-        Left
-    </button>
-    <button hx-get="/arm_right">
-        Right
-    </button>
+    </div>
+    <div id="arm_grab">
+        <button hx-get="/grab">
+            GRAB
+        </button>
+        <button hx-get="/release">
+            RELEASE
+        </button>
+    </div>
     <button hx-get="/cut">
         CUT
     </button>
