@@ -1,7 +1,7 @@
 UTRA Hacks 2024 Project
-Crops field monitoring & sampling robot!
+Let us Meet🥬:   Crops field monitoring & sampling robot!
 
-Features⭐:
+Features⭐:  
 -select point on map (right) and robot will move there automatically  
 -manual remote control option of robot movement, arm and grabber  
 -web cam stream hosted by RPI displayed on UI  
