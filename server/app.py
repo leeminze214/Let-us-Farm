@@ -10,13 +10,16 @@ def home():
 
 @app.route('/new_coord')
 def move_to_position():
+    m_per_s = 0.1
+    img_x_size = 100
+    img_y_size= 100
+    field_x_size=5
+    field_y_size=5
     pixel = request.query_string
     x_pixel,y_pixel= pixel.split(",")
-    #calculate the position
-    #x_pos = x*(x_pix/imagex)
-    #y_pos = y*(y_pix/imagey)
-
-    requests.get("esp ip address")
+    x_time = field_x_size*(x_pixel/img_x_size)/m_per_s
+    y_time = field_y_size*(y_pixel/img_y_size)/m_per_s
+    requests.post("esp ip address",data = (x_time,y_time))
 
     return render_template("home.html")
 
