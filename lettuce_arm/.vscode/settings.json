@@ -38,8 +38,8 @@
   "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
   "C_Cpp_Runner.includePaths": [
-    "C:/Users/lance/OneDrive/Documents/College yr2/UTRA Hacks/Let-us-Farm/Let us farm/include",
-    "C:/Users/lance/OneDrive/Documents/College yr2/UTRA Hacks/Let-us-Farm/Let us farm/src",
+    "C:/Users/lance/OneDrive/Documents/College yr2/UTRA Hacks/Let-us-Farm/lettuce_arm/include",
+    "C:/Users/lance/OneDrive/Documents/College yr2/UTRA Hacks/Let-us-Farm/lettuce_arm/src",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos",
@@ -227,9 +227,9 @@
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/espressif__esp-dsp/modules/kalman/ekf/include",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/espressif__esp-dsp/modules/kalman/ekf_imu13states/include",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/fb_gfx/include",
-    "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/qio_qspi/include",
+    "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/dio_qspi/include",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/cores/esp32",
-    "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/variants/uPesy_esp32_wroom_devkit",
+    "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/variants/doitESP32devkitV1",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src",
     "C:/Users/lance/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src",
@@ -282,10 +282,5 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "files.associations": {
-    "array": "cpp",
-    "string": "cpp",
-    "string_view": "cpp"
-  }
+  "C_Cpp_Runner.msvcSecureNoWarnings": false
 }
