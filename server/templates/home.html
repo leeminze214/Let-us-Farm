@@ -4,17 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HI</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <title>Let us Farm</title>
 </head>
 
 <body>
     <p>welcome home</p>
-    <iframe src="rpi webstream" frameborder="0"></iframe>
-
 
     <a href="localhost:5000/new_coord">
         <img src="w3html.gif" alt="W3Schools.com" width="100" height="100" ismap>
     </a>
+
+    <iframe src="rpi webstream" frameborder="0"></iframe>
+
+    <button hx-get="/Forward">
+        Forward
+    </button>
+    <button hx-get="/Back">
+        Back
+    </button>
+    <button hx-get="/Left">
+        Left
+    </button>
+    <button hx-get="/Right">
+        Right
+    </button>
+
 
 </body>
 
