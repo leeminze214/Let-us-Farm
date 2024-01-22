@@ -10,15 +10,79 @@
 #include <ESPAsyncWebServer.h>
 #include <WiFi.h>
 #include <L298N.h>
+#include <ESP32Servo.h>
 
 AsyncWebServer server(80);
 L298N motor_FL(16, 17);
 L298N motor_FR(5, 18);
 L298N motor_BL(15, 2);
 L298N motor_BR(0, 4);
+Servo s_leftright;
+Servo s_updown;
+Servo s_hand1;
+Servo s_hand2;
+Servo s_cut;
+
+int currangleHor = 90;
+int currangleVer = 90;
 
 const char *ssid = "LetUsFarm";
 const char *password = "12345678";
+
+// servo controls
+void setupServos() {
+  s_leftright.attach(32, 500, 2500);
+  s_updown.attach(33, 500, 2500);
+  s_hand1.attach(25, 700, 2300);
+  s_hand2.attach(26, 700, 2300);
+}
+
+void arm_turnLeft(int& currAngle, Servo& servo) {
+    servo.write(currAngle+10);
+    currAngle += 10;
+    Serial.printf("Current angle: %d\n", currAngle);
+    // currangle by default should be initialized to 90
+    delay(1000);
+}
+
+void arm_turnRight(int& currAngle, Servo& servo) {
+    servo.write(currAngle-10);
+    currAngle -= 10;
+    Serial.printf("Current angle: %d\n", currAngle);
+    // currangle by default should be initialized to 90
+    delay(1000);
+}
+
+void arm_turnUp(int& currAngle, Servo& servo) {
+    servo.write(currAngle-10);
+    currAngle -= 10;
+    Serial.printf("Current angle: %d\n", currAngle);
+    // currangle by default should be initialized to 90
+    delay(1000);
+}
+
+void arm_turnDown(int& currAngle, Servo& servo) {
+    servo.write(currAngle+10);
+    currAngle += 10;
+    Serial.printf("Current angle: %d\n", currAngle);
+    // currangle by default should be initialized to 90
+    delay(1000);
+}
+
+void grabLettuce(Servo& servoLHS, Servo& servoRHS) {
+    servoLHS.write(90);
+    servoRHS.write(90);
+    delay(1000);
+
+}
+
+void letGoLettuce(Servo& servoLHS, Servo& servoRHS) {
+    servoLHS.write(0);
+    servoRHS.write(180);
+    delay(1000);
+}
+
+// motor controls
 
 void stop() {
   motor_FL.stop();
@@ -104,22 +168,34 @@ public:
     }
     else if (!strncmp((const char *) data, "arm_left", len)) {
       Serial.println("Got arm_left!");
+      arm_turnLeft(currangleHor, s_leftright);
     }
     else if (!strncmp((const char *) data, "arm_right", len)) {
       Serial.println("Got arm_right!");
+      arm_turnRight(currangleHor, s_leftright);
     }
     else if (!strncmp((const char *) data, "arm_down", len)) {
       Serial.println("Got arm_down!");
+      arm_turnUp(currangleVer, s_updown);
     }
     else if (!strncmp((const char *) data, "arm_up", len)) {
       Serial.println("Got arm_up!");
+      arm_turnDown(currangleVer, s_updown);
+    }
+    else if (!strncmp((const char *) data, "grab", len)) {
+      Serial.println("Got grab!");
+      grabLettuce(s_hand1, s_hand2);
+    }
+    else if (!strncmp((const char *) data, "release", len)) {
+      Serial.println("Got release!");
+      letGoLettuce(s_hand1, s_hand2);
     }
   }
 };
 
 void notFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Not found");
-}
+} 
 
 void setup() {
   Serial.begin(115200);
@@ -181,11 +257,13 @@ void setup() {
 
   server.begin();
 
-  motor_BL.setSpeed(255);
-  motor_BR.setSpeed(255);
-  motor_FL.setSpeed(255);
-  motor_FR.setSpeed(255);
+  motor_BL.setSpeed(50);
+  motor_BR.setSpeed(50);
+  motor_FL.setSpeed(50);
+  motor_FR.setSpeed(50);
   stop();
+
+  setupServos();
 }
 
 void loop() {}
